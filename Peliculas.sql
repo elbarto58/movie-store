@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `Peliculas`.`Usuarios` (
   `Pin` VARCHAR(45) NULL,
   `Id_direccion` INT NOT NULL,
   PRIMARY KEY (`Id_usuarios`),
-  INDEX `fk_Usuarios_Direccion1_idx` (`Id_direccion` ASC) VISIBLE,
+
   CONSTRAINT `fk_Usuarios_Direccion` 
     FOREIGN KEY (`Id_direccion`)
     REFERENCES `Peliculas`.`Direccion` (`Id_direccion`)
@@ -90,7 +90,6 @@ CREATE TABLE IF NOT EXISTS `Peliculas`.`Renta_o_venta` (
   `Costo` FLOAT NULL,
   `Id_pelicula` INT NULL,
   PRIMARY KEY (`Id_renta_o_venta`),
-  INDEX `fk_Detalle_pedido_Libro1_idx` (`Id_pelicula` ASC) VISIBLE,
   CONSTRAINT `fk_Detalle_pedido_Libro1`
     FOREIGN KEY (`Id_pelicula`)
     REFERENCES `Peliculas`.`Pelicula` (`Id_pelicula`)
@@ -111,8 +110,6 @@ CREATE TABLE IF NOT EXISTS `Peliculas`.`Pedido` (
   `Id_renta_o_venta` INT NOT NULL,
   `Estado_de_entriego_en_caso_de_renta` VARCHAR(45) NULL,
   PRIMARY KEY (`Id_pedido`),
-  INDEX `fk_Pedido_Usuarios1_idx` (`Id_usuarios` ASC) VISIBLE,
-  INDEX `fk_Pedido_Renta_o_venta1_idx` (`Id_renta_o_venta` ASC) VISIBLE,
   CONSTRAINT `fk_Pedido_Usuarios1`
     FOREIGN KEY (`Id_usuarios`)
     REFERENCES `Peliculas`.`Usuarios` (`Id_usuarios`)
@@ -134,8 +131,6 @@ CREATE TABLE IF NOT EXISTS `Peliculas`.`Historial` (
   `Id_administrador` INT NOT NULL,
   `Id_entradas` INT NOT NULL,
   PRIMARY KEY (`Id_historial`),
-  INDEX `fk_Historial_Administrador_idx` (`Id_administrador` ASC) VISIBLE,
-  INDEX `fk_Historial_Entradas1_idx` (`Id_entradas` ASC) VISIBLE,
   CONSTRAINT `fk_Historial_Administrador`
     FOREIGN KEY (`Id_administrador`)
     REFERENCES `Peliculas`.`Administrador` (`Id_administrador`)
@@ -157,7 +152,6 @@ CREATE TABLE IF NOT EXISTS `Peliculas`.`Total_pagar` (
   `Id_pedido` INT NOT NULL,
   `Estado_de_pago` VARCHAR(45) NULL,
   PRIMARY KEY (`Id_total_pagar`),
-  INDEX `fk_Total_pagar_Pedido1_idx` (`Id_pedido` ASC) VISIBLE,
   CONSTRAINT `fk_Total_pagar_Pedido1`
     FOREIGN KEY (`Id_pedido`)
     REFERENCES `Peliculas`.`Pedido` (`Id_pedido`)
